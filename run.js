@@ -40,7 +40,6 @@ server.listen(port, () => {
     fs.readFile(PHOTO_FILE, (err, buf) => {
       if (!!err) { console.log(err); return; }
       io.sockets.emit("photo", { image: true, buffer: buf.toString("base64") });
-      console.log("send");
     });
   });
 
