@@ -1,9 +1,9 @@
-const port = 80;
+const port = 8080;
 
 const PHOTO_DIR = __dirname + "/photo/";
 const PHOTO_FILE = PHOTO_DIR + "p.jpg";
 
-const shutter_timing = 1 * 1000; // 1sec
+const shutter_timing = 5 * 1000; // 1sec
 
 const express = require("express"),
       app = express(),
@@ -11,7 +11,12 @@ const express = require("express"),
       io = require('socket.io')(server),
       fs = require('fs'),
       exec = require('child_process').exec;
+
+const cv = require("opencv4nodejs");
+// const fr = require("face-recognition");
       
+// const classifier = new cv.CascadeClassifier(cv.HAAR_FRONTALFACE_ALT2);
+
 if (!isExistFile(PHOTO_DIR)) {
   fs.mkdirSync(PHOTO_DIR);
 }
@@ -38,9 +43,20 @@ server.listen(port, () => {
   
   raspistill.on("close", () => {
     fs.readFile(PHOTO_FILE, (err, buf) => {
-      if (!!err) { console.log(err); return; }
+      if (err) { return console.log(err); }
       io.sockets.emit("photo", { image: true, buffer: buf.toString("base64") });
     });
+
+    // cv.imreadAsync(PHOTO_FILE, (err, img) => {
+    //   if (err) { return console.log(err); }
+      
+    //   const grayImg = img.bgrToGray();
+    //   classifier.detectMultiScaleAsync(grayImg, (err, res) => {
+    //     if (err) { return console.log(err); }
+        
+    //     console.log(res);
+    //   });
+    // });
   });
 
   setTimeout(p, shutter_timing);
