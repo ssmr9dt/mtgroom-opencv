@@ -53,11 +53,8 @@ server.listen(port, () => {
       const grayImg = img.bgrToGray();
       classifier.detectMultiScaleAsync(grayImg, (err, res) => {
         if (err) { return console.log(err); }
-        
-        if (res.numDetections.length > 0) {
-          console.log(res.numDetections);
-        }
-        io.sockets.emit("status", { enter: (res.numDetections.length > 0) });
+
+        io.sockets.emit("status", { enter: (res.numDetections.length > 0), num: res.numDetections.length });
       });
     });
   });

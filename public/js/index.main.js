@@ -7,5 +7,5 @@ socket.on("photo", function(face){
 });
 
 socket.on("status", function(e) {
-  document.getElementById("num").innerHTML = e.enter === true ? "誰かいる" : "誰もいない";
+  document.getElementById("num").innerHTML = e.enter === true ? e.num + "人いる" : "誰もいない";
 });
