@@ -9,4 +9,4 @@ cd mtgroom-opencv/
 /usr/bin/git reset --hard
 
 /root/.nvm/versions/node/v10.10.0/bin/npm install
-/root/.nvm/versions/node/v10.10.0/bin/npm start &
+/root/.nvm/versions/node/v10.10.0/bin/forever start run.js
