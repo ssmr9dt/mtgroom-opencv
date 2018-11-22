@@ -1,4 +1,4 @@
-const port = 8080;
+const port = process.env.PORT || 80;
 
 const PHOTO_DIR = __dirname + "/photo/";
 const PHOTO_FILE = PHOTO_DIR + "p.jpg";
