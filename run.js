@@ -15,7 +15,7 @@ const express = require("express"),
 const cv = require("opencv4nodejs");
 // const fr = require("face-recognition");
       
-// const classifier = new cv.CascadeClassifier(cv.HAAR_FRONTALFACE_ALT2);
+const classifier = new cv.CascadeClassifier(cv.HAAR_FRONTALFACE_ALT2);
 
 if (!isExistFile(PHOTO_DIR)) {
   fs.mkdirSync(PHOTO_DIR);
@@ -47,16 +47,19 @@ server.listen(port, () => {
       io.sockets.emit("photo", { image: true, buffer: buf.toString("base64") });
     });
 
-    // cv.imreadAsync(PHOTO_FILE, (err, img) => {
-    //   if (err) { return console.log(err); }
+    cv.imreadAsync(PHOTO_FILE, (err, img) => {
+      if (err) { return console.log(err); }
       
-    //   const grayImg = img.bgrToGray();
-    //   classifier.detectMultiScaleAsync(grayImg, (err, res) => {
-    //     if (err) { return console.log(err); }
+      const grayImg = img.bgrToGray();
+      classifier.detectMultiScaleAsync(grayImg, (err, res) => {
+        if (err) { return console.log(err); }
         
-    //     console.log(res);
-    //   });
-    // });
+        if (res.numDetections.length > 0) {
+          console.log(res.numDetections);
+        }
+        io.sockets.emit("status", { enter: (res.numDetections.length > 0) });
+      });
+    });
   });
 
   setTimeout(p, shutter_timing);
