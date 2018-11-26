@@ -2,6 +2,8 @@ const port = process.env.PORT || 80;
 
 const PHOTO_DIR = __dirname + "/photo/";
 const PHOTO_FILE = PHOTO_DIR + "p.jpg";
+const PHOTO_SIZE_WIDTH = 960;
+const PHOTO_SIZE_HEIGHT = 540;
 
 const shutter_timing = 5 * 1000; // 1sec
 
@@ -15,8 +17,8 @@ const express = require("express"),
 const camera = new piCamera({
   mode: "photo",
   output: PHOTO_FILE,
-  width: 960,
-  height: 540,
+  width: PHOTO_SIZE_WIDTH,
+  height: PHOTO_SIZE_HEIGHT,
   nopreview: true
 });
 
