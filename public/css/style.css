@@ -1,0 +1,44 @@
+body {
+  background-color: #202d38;
+}
+#toggle {
+  width: 720px;
+  height: 390px;
+  margin: 50px auto;
+}
+  #toggle .button {
+    position: relative;
+    left: -0px; top: -0px;
+    width: 720px;
+    height: 390px;
+    background-image: url(img/button_01.png);
+    color: white;
+    font-size: 3em;
+  }
+    #toggle .button img {
+      margin: 10px 0 0 130px;
+    }
+    #toggle .button p {
+      margin: -0.86em 0 0 0;
+      text-align: center;
+      font-weight: bold;
+    }
+  #empty {
+    background-position: -5px -5px;
+  }
+    #empty img {}
+    #empty p {
+      text-shadow: 0 0 30px #009be1;
+    }
+
+  #occupied {
+    background-position: 725px -5px;
+  }
+    #occupied img {}
+    #occupied p {
+      text-shadow: 0 0 30px #c60000;
+    }
+.c, .d {
+  width: 720px;
+  margin: 0 auto;
+}
