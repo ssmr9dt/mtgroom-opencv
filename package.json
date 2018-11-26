@@ -6,6 +6,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "opencv4nodejs": "^4.10.1",
+    "pi-camera": "^1.2.1",
     "pug": "^2.0.3",
     "socket.io": "^2.1.1"
   },
