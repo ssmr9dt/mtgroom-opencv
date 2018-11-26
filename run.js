@@ -15,8 +15,8 @@ const express = require("express"),
 const camera = new piCamera({
   mode: "photo",
   output: PHOTO_FILE,
-  width: 1920,
-  height: 1080,
+  width: 960,
+  height: 540,
   nopreview: true
 });
 
