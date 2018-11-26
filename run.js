@@ -10,7 +10,15 @@ const express = require("express"),
       server = require('http').Server(app),
       io = require('socket.io')(server),
       fs = require('fs'),
-      exec = require('child_process').exec;
+      piCamera = require("pi-camera");
+
+const camera = new piCamera({
+  mode: "photo",
+  output: PHOTO_FILE,
+  width: 1920,
+  height: 1080,
+  nopreview: true
+});
 
 const cv = require("opencv4nodejs");
 // const fr = require("face-recognition");
@@ -40,9 +48,11 @@ server.listen(port, () => {
 
 (function p() {
   
-  const raspistill = exec("raspistill -o " + PHOTO_FILE + " -h 480 -w 640 -t 100 -n");
+  // const raspistill = exec("raspistill -o " + PHOTO_FILE + " -h 1080 -w 1920 -t 100 -n");
+  camera.snap()
+    .then((result) => {
   
-  raspistill.on("close", () => {
+  // raspistill.on("close", () => {
     fs.readFile(PHOTO_FILE, (err, buf) => {
       if (err) { return console.log(err); }
       io.sockets.emit("photo", { image: true, buffer: buf.toString("base64") });
