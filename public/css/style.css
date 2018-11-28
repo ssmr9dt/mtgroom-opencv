@@ -43,3 +43,7 @@ body {
   width: 720px;
   margin: 0 auto;
 }
+
+#photo {
+  width: 100%;
+}
