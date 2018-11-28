@@ -5,7 +5,7 @@ const PHOTO_FILE = PHOTO_DIR + "p.jpg";
 const PHOTO_SIZE_WIDTH = 960;
 const PHOTO_SIZE_HEIGHT = 540;
 
-const shutter_timing = 1 * 1000; // 1sec
+const shutter_timing = 2 * 1000; // 1sec
 
 const express = require("express"),
       app = express(),
