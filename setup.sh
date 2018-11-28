@@ -7,5 +7,5 @@ cd mtgroom-opencv/
 /usr/bin/git pull origin master
 /usr/bin/git reset --hard
 
-npm install > setup.log 2>&1
+npm install
 forever start run.js
