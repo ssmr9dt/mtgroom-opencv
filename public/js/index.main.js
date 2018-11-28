@@ -10,7 +10,7 @@ socket.on("status", function(e) {
   toggleSwitch(e.enter);
 });
 
-toggleSwitch(false);)
+toggleSwitch(false);
 
 function toggleSwitch(entered) {
   const empty_style = document.getElementById("empty").style;
