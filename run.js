@@ -45,6 +45,10 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/?debug", (req, res) => {
+  res.render("index_debug");
+});
+
 server.listen(port, () => {
   console.log("listening on *:80");
 });
