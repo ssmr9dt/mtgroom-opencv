@@ -34,9 +34,10 @@ if (!isExistFile(PHOTO_DIR)) {
 app.set("view engine", "pug");
 app.set('views', __dirname + '/views/');
 
-app.use("/js/", express.static(__dirname + '/public/js/'));
-app.use("/css/", express.static(__dirname + '/public/css/'));
-app.use("/lib/js/bootstrap/", express.static(__dirname + '/node_modules/bootstrap/dist/'));
+app.use("/js/", express.static(__dirname + "/public/js/"));
+app.use("/css/", express.static(__dirname + "/public/css/"));
+app.use("/img/", express.static(__dirname + "/public/img/"))
+app.use("/lib/js/bootstrap/", express.static(__dirname + "/node_modules/bootstrap/dist/"));
 
 app.get("/", (req, res) => {
   res.render("index", {
