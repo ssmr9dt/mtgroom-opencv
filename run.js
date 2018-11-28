@@ -58,26 +58,27 @@ server.listen(port, () => {
   // const raspistill = exec("raspistill -o " + PHOTO_FILE + " -h 1080 -w 1920 -t 100 -n");
   camera.snap()
     .then((result) => {
-  
-  // raspistill.on("close", () => {
-    fs.readFile(PHOTO_FILE, (err, buf) => {
-      if (err) { return console.log(err); }
-      io.sockets.emit("photo", { image: true, buffer: buf.toString("base64") });
-    });
-
-    cv.imreadAsync(PHOTO_FILE, (err, img) => {
-      if (err) { return console.log(err); }
-      
-      const grayImg = img.bgrToGray();
-      classifier.detectMultiScaleAsync(grayImg, (err, res) => {
+      fs.readFile(PHOTO_FILE, (err, buf) => {
         if (err) { return console.log(err); }
-
-        io.sockets.emit("status", { enter: (res.numDetections.length > 0), num: res.numDetections.length });
+        io.sockets.emit("photo", { image: true, buffer: buf.toString("base64") });
       });
+  
+      cv.imreadAsync(PHOTO_FILE, (err, img) => {
+        if (err) { return console.log(err); }
+        
+        const grayImg = img.bgrToGray();
+        classifier.detectMultiScaleAsync(grayImg, (err, res) => {
+          if (err) { return console.log(err); }
+  
+          io.sockets.emit("status", { enter: (res.numDetections.length > 0), num: res.numDetections.length });
+        });
+      });
+      setTimeout(p, shutter_timing);
+    })
+    .catch((error) => {
+      setTimeout(p, shutter_timing);
     });
-  });
-
-  setTimeout(p, shutter_timing);
+    
 })();
 
 function isExistFile(file) {
