@@ -33,6 +33,7 @@ body {
 
   #occupied {
     background-position: 725px -5px;
+    display: none;
   }
     #occupied img {}
     #occupied p {
