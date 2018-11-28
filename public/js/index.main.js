@@ -3,7 +3,7 @@
 var socket = io();
 
 socket.on("photo", function(face) {
-  // document.getElementById("photo").src = "data:image/jpg;base64," +face.buffer;
+  document.getElementById("photo").src = "data:image/jpg;base64," +face.buffer;
 });
 
 socket.on("status", function(e) {
